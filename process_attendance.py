@@ -81,14 +81,21 @@ def extract_data(input_folder, data_dict: dict, dates: list):
                 
                 lines = infile.readlines()
                 
-                header = lines[0:8]
-                date_time = lines[5][29:].strip()
+                # remove empty lines
+                lines = [line for line in lines if line.strip()]
+                
+                # Assign content of lines from row 0 to 5
+                header = lines[0:5]
+                
+                
+                date_time = lines[4][29:].strip()
                 dates.append(date_time)
-                header_table = lines[9]
+                
+                header_table = lines[6]
                 
                 # Assign content of lines from row 11 until the end of the table, 
                 #   but exclude the two last line
-                data = lines[10:-2]
+                data = lines[7:-1]
                 data_size = len(data)
                 
                 
