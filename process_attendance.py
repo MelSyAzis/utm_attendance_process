@@ -239,6 +239,8 @@ data_dict = {}
 input_folder = "pdf"
 output_folder_txt = "txt"
 output_filename = "attendance_processed"
+newest_file = sorted(os.listdir(input_folder))[-1]
+output_filename += '_' + newest_file.strip('.pdf')
 
 if os.path.exists(output_folder_txt):
     shutil.rmtree(output_folder_txt)
