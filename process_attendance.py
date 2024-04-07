@@ -71,27 +71,35 @@ def extract_data(input_folder, data_dict: dict, dates: list):
     
     # A loop that will open all files inside a folder
     listfiles = os.listdir(input_folder)
-    listfiles.sort()
+    listfiles.sort(reverse=True)
+    
+    latest_date_done = False
     
     for filename in listfiles:
         if filename.lower().endswith('.txt'):
             file_in_path = os.path.join(input_folder, filename)
+            
+            print("Processing " + file_in_path + " ...")
         
-            with open(file_in_path, 'r') as infile:
+            with open(file_in_path, 'r') as infile, \
+                open(file_in_path+'.stripped', 'w') as outfile:
+                
                 
                 lines = infile.readlines()
                 
                 # remove empty lines
                 lines = [line for line in lines if line.strip()]
+                outfile.writelines(lines)
                 
                 # Assign content of lines from row 0 to 5
                 header = lines[0:5]
                 
-                
-                date_time = lines[4][29:].strip()
+                date_time_split = lines[4].split()
+                date_time = " ".join(date_time_split[-5:])
                 dates.append(date_time)
                 
                 header_table = lines[6]
+                
                 
                 # Assign content of lines from row 11 until the end of the table, 
                 #   but exclude the two last line
@@ -101,23 +109,53 @@ def extract_data(input_folder, data_dict: dict, dates: list):
                 
                 for line in data:
                     
-                    matric_no = line[9:20].strip()
-                    name = line[21:82].strip()
-                    programme = line[83:96].strip()
-                    year = line[97:103].strip()
-                    time_in = line[104:].strip()
+                    if any(c.strip() for c in line[:4]):
+                        # This is data row
+                        
+                        line_words = line.split()
+                        no = line_words[0]
+                        matric_no = line_words[1]
+                        
+                        if line_words[-1][-1] == "M":
+                            # row containing "AM" or "PM" means attended
+                            time_in = ' '.join(line_words[-2:])
+                            year = line_words[-3]
+                            programme = line_words[-4]
+                            name = ' '.join(line_words[2:-4])
+                            
+                        else:
+                            time_in = ""
+                            year = line_words[-1]
+                            programme = line_words[-2]
+                            name = ' '.join(line_words[2:-2])
+                            
+                    if not latest_date_done:
+                        if name not in data_dict:
+                            data_dict[name] = {'Name': name}
+                            data_dict[name]['MatricNo.'] = matric_no
+                            data_dict[name]['Programme'] = programme
+                            data_dict[name]['Year'] = year
+                            data_dict[name]['Attended'] = 0
+                            data_dict[name]['Absent'] = 0
+                            data_dict[name]['AbsentList'] = ""
                     
                     if name not in data_dict:
-                        data_dict[name] = {'Name': name}
-                        data_dict[name]['MatricNo.'] = matric_no
-                        data_dict[name]['Programme'] = programme
-                        data_dict[name]['Year'] = year
-                        data_dict[name]['Attended'] = 0
+                        print('Name is not in the latest name list:', name)
+                        print('This row will be ignored:', line)
+                        
+                    else:
+                        data_dict[name][date_time] = time_in
                     
-                    data_dict[name][date_time] = time_in
-                    
-                    if time_in != '':
-                        data_dict[name]['Attended'] += 1
+                        if time_in != '':
+                            data_dict[name]['Attended'] += 1
+                        else:
+                            data_dict[name]['Absent'] += 1
+                            data_dict[name]['AbsentList'] += date_time + '; '
+                        
+                if not latest_date_done:
+                    latest_date_done = True
+                        
+        pass
                         
                         
 def generate_csv(data_dict: dict, dates: list, output_filename: str):
@@ -138,7 +176,7 @@ def generate_csv(data_dict: dict, dates: list, output_filename: str):
         fieldnames = \
             ['No.'] \
             + ['Name', 'MatricNo.', 'Programme', 'Year'] \
-            + ['Attended', 'Absent', 'Percentage'] \
+            + ['Attended', 'Absent', 'Percentage', 'AbsentList'] \
             + dates
 
         writer.writerow(fieldnames)
@@ -153,10 +191,12 @@ def generate_csv(data_dict: dict, dates: list, output_filename: str):
                     value['Name'], value['MatricNo.'], value['Programme'], 
                     value['Year']
                 ] \
-                + [ value['Attended'], len(dates) - value['Attended'] ] \
-                + [ value['Attended']/len(dates)*100 ] \
+                + [ value['Attended'], value['Absent'] ] \
+                + [ "{:.1f}".format(value['Attended']/(value['Attended'] + value['Absent'])*100) ] \
+                + [ value['AbsentList'][:-2] ] \
                 + [value.get(date, '') for date in dates]
             writer.writerow(row_content)
+            
             
             
             
