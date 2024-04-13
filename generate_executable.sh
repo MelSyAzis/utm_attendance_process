@@ -1,8 +1,8 @@
 #!/bin/bash
 
-SCRIPT_NAME=process_attendance.py
-EXECUTABLE_NAME="${SCRIPT_NAME%.*}"
+SCRIPT_NAME=main.py
+EXECUTABLE_NAME=process_attendance
 
-pyinstaller --onefile $SCRIPT_NAME
+pyinstaller --onefile --name $EXECUTABLE_NAME $SCRIPT_NAME
 mkdir -p bin
 mv dist/$EXECUTABLE_NAME bin/$EXECUTABLE_NAME
