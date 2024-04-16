@@ -1,0 +1,86 @@
+build/attendance_utm/Analysis-00.toc
+build/attendance_utm/attendance_utm.pkg
+build/attendance_utm/base_library.zip
+build/attendance_utm/EXE-00.toc
+build/attendance_utm/PKG-00.toc
+build/attendance_utm/PYZ-00.pyz
+build/attendance_utm/PYZ-00.toc
+build/attendance_utm/Tree-00.toc
+build/attendance_utm/Tree-01.toc
+build/attendance_utm/Tree-02.toc
+build/attendance_utm/warn-attendance_utm.txt
+build/attendance_utm/xref-attendance_utm.html
+build/attendance_utm/localpycs/pyimod01_archive.pyc
+build/attendance_utm/localpycs/pyimod02_importers.pyc
+build/attendance_utm/localpycs/pyimod03_ctypes.pyc
+build/attendance_utm/localpycs/pyimod04_pywin32.pyc
+build/attendance_utm/localpycs/struct.pyc
+build/main/Analysis-00.toc
+build/main/base_library.zip
+build/main/EXE-00.toc
+build/main/main.exe.manifest
+build/main/main.pkg
+build/main/PKG-00.toc
+build/main/PYZ-00.pyz
+build/main/PYZ-00.toc
+build/main/Tree-00.toc
+build/main/Tree-01.toc
+build/main/Tree-02.toc
+build/main/warn-main.txt
+build/main/xref-main.html
+build/main/localpycs/pyimod01_archive.pyc
+build/main/localpycs/pyimod02_importers.pyc
+build/main/localpycs/pyimod03_ctypes.pyc
+build/main/localpycs/pyimod04_pywin32.pyc
+build/main/localpycs/struct.pyc
+build/process_attendance/Analysis-00.toc
+build/process_attendance/base_library.zip
+build/process_attendance/EXE-00.toc
+build/process_attendance/PKG-00.toc
+build/process_attendance/process_attendance.exe.manifest
+build/process_attendance/process_attendance.pkg
+build/process_attendance/PYZ-00.pyz
+build/process_attendance/PYZ-00.toc
+build/process_attendance/Tree-00.toc
+build/process_attendance/Tree-01.toc
+build/process_attendance/Tree-02.toc
+build/process_attendance/warn-process_attendance.txt
+build/process_attendance/xref-process_attendance.html
+build/process_attendance/localpycs/pyimod01_archive.pyc
+build/process_attendance/localpycs/pyimod02_importers.pyc
+build/process_attendance/localpycs/pyimod03_ctypes.pyc
+build/process_attendance/localpycs/pyimod04_pywin32.pyc
+build/process_attendance/localpycs/struct.pyc
+.vscode/tasks-and-contexts.json
+__pycache__/process_attendance.cpython-311.pyc
+pdf/240320-14-2.pdf
+pdf/240324-14-2.pdf
+pdf/240327-14-2.pdf
+pdf/240331-14-2.pdf
+pdf/240403-14-2.pdf
+reminder_letter/AHMAD HAZIM BIN HALIMI/SEMO3033-71-AHMAD HAZIM BIN HALIMI-1st_reminder.pdf
+reminder_letter/BIBY SOFFEA AJEERAH BT CHE ROFIE/SEMO3033-71-BIBY SOFFEA AJEERAH BT CHE ROFIE-1st_reminder.pdf
+reminder_letter/BIBY SOFFEA AJEERAH BT CHE ROFIE/SEMO3033-71-BIBY SOFFEA AJEERAH BT CHE ROFIE-2nd_reminder.pdf
+reminder_letter/MOHAMAD NOOR FARIS BIN NOOR AZAM/SEMO3033-71-MOHAMAD NOOR FARIS BIN NOOR AZAM-1st_reminder.pdf
+reminder_letter/MUHAMMAD JAMATUL ALIFF BIN HAMIDUN/SEMO3033-71-MUHAMMAD JAMATUL ALIFF BIN HAMIDUN-1st_reminder.pdf
+reminder_letter/MUHAMMAD JAMATUL ALIFF BIN HAMIDUN/SEMO3033-71-MUHAMMAD JAMATUL ALIFF BIN HAMIDUN-2nd_reminder.pdf
+reminder_letter/NORDIYANA BINTI MOHD AZHA/SEMO3033-71-NORDIYANA BINTI MOHD AZHA-1st_reminder.pdf
+reminder_letter/SITI MASITAH BINTI MD HANIPAH/SEMO3033-71-SITI MASITAH BINTI MD HANIPAH-1st_reminder.pdf
+reminder_letter-generated/AHMAD HAZIM BIN HALIMI/SEMO3033-71-AHMAD HAZIM BIN HALIMI-1st_reminder.pdf
+reminder_letter-generated/BIBY SOFFEA AJEERAH BT CHE ROFIE/SEMO3033-71-BIBY SOFFEA AJEERAH BT CHE ROFIE-1st_reminder.pdf
+reminder_letter-generated/BIBY SOFFEA AJEERAH BT CHE ROFIE/SEMO3033-71-BIBY SOFFEA AJEERAH BT CHE ROFIE-2nd_reminder.pdf
+reminder_letter-generated/MOHAMAD NOOR FARIS BIN NOOR AZAM/SEMO3033-71-MOHAMAD NOOR FARIS BIN NOOR AZAM-1st_reminder.pdf
+reminder_letter-generated/MUHAMMAD JAMATUL ALIFF BIN HAMIDUN/SEMO3033-71-MUHAMMAD JAMATUL ALIFF BIN HAMIDUN-1st_reminder.pdf
+reminder_letter-generated/MUHAMMAD JAMATUL ALIFF BIN HAMIDUN/SEMO3033-71-MUHAMMAD JAMATUL ALIFF BIN HAMIDUN-2nd_reminder.pdf
+reminder_letter-generated/NORDIYANA BINTI MOHD AZHA/SEMO3033-71-NORDIYANA BINTI MOHD AZHA-1st_reminder.pdf
+reminder_letter-generated/SITI MASITAH BINTI MD HANIPAH/SEMO3033-71-SITI MASITAH BINTI MD HANIPAH-1st_reminder.pdf
+txt/240320-14-2.txt
+txt/240320-14-2.txt.stripped
+txt/240324-14-2.txt
+txt/240324-14-2.txt.stripped
+txt/240327-14-2.txt
+txt/240327-14-2.txt.stripped
+txt/240331-14-2.txt
+txt/240331-14-2.txt.stripped
+txt/240403-14-2.txt
+txt/240403-14-2.txt.stripped
