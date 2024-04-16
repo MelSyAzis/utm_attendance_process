@@ -18,7 +18,7 @@ def browse_folder(entry):
         entry.insert(0, folder_selected)
 
 def process_data():
-    global name_lecturer, tel_no_lecturer, faculty, folder_path, signature_path
+    global name_lecturer, tel_no_lecturer, faculty, folder_path, signature_path, exclude_path
 
     
     # Retrieve data from entry fields
@@ -27,13 +27,16 @@ def process_data():
     faculty = faculty_entry.get()
     folder_path = folder_entry.get()
     signature_path = signature_entry.get()
+    exclude_path = exclude_entry.get()
 
     # Input validation (you might want to do this)
     if not name_lecturer \
         or not tel_no_lecturer \
         or not faculty \
         or not folder_path \
-        or not signature_path:
+        or not signature_path \
+        or not exclude_path \
+            :
         
         messagebox.showerror("Error", "Please fill in all fields.")
         return
@@ -48,6 +51,9 @@ def process_data():
     print("Faculty:", faculty)
     print("Folder Path:", folder_path)
     print("Signature Path:", signature_path)
+    print("Exclude Path:", exclude_path)
+    
+    pass
 
 
 def on_closing():
@@ -58,7 +64,7 @@ def on_closing():
     
 
 def main():
-    global name_entry, tel_no_entry, faculty_entry, folder_entry, signature_entry
+    global name_entry, tel_no_entry, faculty_entry, folder_entry, signature_entry, exclude_entry
     global root
     
     # GET INPUT FROM USER VIA GUI
@@ -148,7 +154,7 @@ def main():
     exclude_entry.pack()
 
     exclude_browse_button = tk.Button(root, text="Browse", 
-        command=lambda: browse_file(signature_entry))
+        command=lambda: browse_file(exclude_entry))
     exclude_browse_button.pack()
 
     spacer = tk.Label(root, text="")
@@ -192,7 +198,7 @@ def main():
     
     pa.convert_pdfs_to_text(folder_path, output_folder_txt)
     
-    pa.extract_data(output_folder_txt, data_dict, dates)
+    pa.extract_data(output_folder_txt, data_dict, dates, exclude_path)
 
     pa.generate_csv(data_dict, dates, output_filename)
 
@@ -215,17 +221,17 @@ def main():
             os.makedirs(f'{reminder_letter_folder}/{name_student}')
             pa.write_warning_letter(
                 name_student, 1, f"{path_prefix}-1st_reminder.pdf", 
-                value, name_lecturer, tel_no_lecturer)
+                value, name_lecturer, tel_no_lecturer, signature_path)
         
         if value['AbsentDuration'] >= int(value['CourseCode'][7])*2:
             pa.write_warning_letter(
                 name_student, 2, f"{path_prefix}-2nd_reminder.pdf", 
-                value, name_lecturer, tel_no_lecturer)
+                value, name_lecturer, tel_no_lecturer, signature_path)
             
         if value['AbsentDuration'] >= int(value['CourseCode'][7])*3:
             pa.write_warning_letter(
                 name_student, 2, f"{path_prefix}-3rd_reminder.pdf", 
-                value, name_lecturer, tel_no_lecturer)
+                value, name_lecturer, tel_no_lecturer, signature_path)
     
     
     # POST-PROCESSING

@@ -61,7 +61,7 @@ def convert_pdfs_to_text(input_folder, output_folder):
             print(f"Converted {pdf_path} to {output_path}")
             
             
-def extract_data(input_folder, data_dict: dict, dates: list):
+def extract_data(input_folder, data_dict: dict, dates: list, exclude_path: str):
     """Extract data from text files in a folder.
 
     Args:
@@ -78,8 +78,8 @@ def extract_data(input_folder, data_dict: dict, dates: list):
     
     latest_date_done = False
     
-    if os.path.isfile('attendance_exclude.xlsx'):
-        with open('attendance_exclude.xlsx', 'rb') as file:
+    if os.path.isfile(exclude_path):
+        with open(exclude_path, 'rb') as file:
             data_exclude = pd.read_excel(file)
     
     for filename in listfiles:
@@ -161,7 +161,7 @@ def extract_data(input_folder, data_dict: dict, dates: list):
                             data_dict[name]['AbsentList'] = ""
                             data_dict[name]['AbsentDuration'] = 0
                             
-                            if os.path.isfile('attendance_exclude.xlsx'):
+                            if os.path.isfile(exclude_path):
                                 
                                 data_exclude_filtered = data_exclude[data_exclude['Name'] == name]
                                 exclude_list = data_exclude_filtered['Exclude'].to_string().split()
@@ -280,7 +280,7 @@ def generate_xlsx(output_filename: str):
     
     
 def write_warning_letter(
-    name_student: str, warning_level: int, write_path: str, value_dict: dict, name_lecturer: str, phone_number: str):
+    name_student: str, warning_level: int, write_path: str, value_dict: dict, name_lecturer: str, phone_number: str, signature_path: str):
     
 
     def draw_grid(page):
@@ -453,7 +453,7 @@ def write_warning_letter(
     
     
     # Lecturer's signature
-    if os.path.isfile('signature.png'):
+    if os.path.isfile(signature_path):
         image_path = 'signature.png'
         image_rectangle = fitz.Rect(100, 635, 200, 673)  # (x0, y0, x1, y1)
         page2.insert_image(image_rectangle, filename=image_path)
@@ -494,7 +494,7 @@ def main():
 
     convert_pdfs_to_text(input_folder, output_folder_txt)
 
-    extract_data(output_folder_txt, data_dict, dates)
+    extract_data(output_folder_txt, data_dict, dates, exclude_path)
 
     generate_csv(data_dict, dates, output_filename)
 
