@@ -454,7 +454,7 @@ def write_warning_letter(
     
     # Lecturer's signature
     if os.path.isfile(signature_path):
-        image_path = 'signature.png'
+        image_path = signature_path
         image_rectangle = fitz.Rect(100, 635, 200, 673)  # (x0, y0, x1, y1)
         page2.insert_image(image_rectangle, filename=image_path)
         
